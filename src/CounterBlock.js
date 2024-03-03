@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
-import './style.css';
 
-const CounterBlock = ({category, onCounterChange }) => {
-  // State to track the counter value
-  const [counter, setCounter] = useState(0);
 
-  // Function to increment the counter
-  const incrementCounter = () => {
-      setCounter(counter + 1);
-      onCounterChange(1);
+function PlayerBlock({ playerName, onScoreChange }) {
+  const [score, setScore] = useState(0);
+
+  const updateScore = (operation) => {
+    if (operation === 'increment') {
+      setScore(prevScore => prevScore + 1);
+      onScoreChange(playerName, 1); // Update total score by adding 1
+    } else if (operation === 'decrement' && score > 0) {
+      setScore(prevScore => prevScore - 1);
+      onScoreChange(playerName, -1); // Update total score by subtracting 1
+
+    }
   };
 
-  // Function to decrement the counter
-  const decrementCounter = () => {
-      setCounter(counter - 1);
-      onCounterChange(-1);
-  };
-
-    return (
-	<div style={{ border: '2px solid #696c4a', padding: '10px', borderRadius: '8px', backgroundColor: '#b2a48a', display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', marginBottom: '20px', width: '300px' }}>
-	    <h2 className="counter-text" style={{ marginRight: '10px', marginLeft: '10px',  color: '#f3efe6', fontSize: '22px', width: '150px' }} >{category }</h2>
-	    <button onClick={incrementCounter} style={{ marginRight: '10px', padding: '8px 16px', borderRadius: '8px', fontSize: '18px', color: '#f3efe6', backgroundColor: '#928f86' }} >+</button>
-	    <h2 style={{ marginRight: '10px', marginLeft: '10px',  color: '#f3efe6', fontSize: '20px' }}>{counter}</h2>
-	    <button onClick={decrementCounter} style={{ marginLeft: '10px', padding: '8px 16px',  borderRadius: '8px', fontSize: '18px', color: '#f3efe6',  backgroundColor: '#928f86'}}>-</button>
+  return (
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', width:'500px', fontSize:'20px' }}>
+     
+         <p  style={{ color: '#ffd8e0', margin: '0', width: '400px' }}>{playerName}</p>
+     
+	  <div style={{ marginRight: '20px', backgroundColor: '#d49ca8', padding: '10px', borderRadius: '5px' }}>
+      
+              <p style={{ margin: '0' , color:'#673844'}}>{score}</p>
+      </div>
+	  <div style={{ flex: '0 0 auto' }}>
+              <button onClick={() => updateScore('increment')} style={{width: '10px', height: '8px',  backgroundColor: '#9ac1b2', color: '#360b19',borderRadius: '5px',fontSize:'16px', marginLeft: '10px', border: 'none', padding: '9px 21px', cursor: 'pointer', display: 'flex', alignItems:'center', justifyContent: 'center', }}	>+</button>
+	      
+              <button  onClick={() => updateScore('decrement')}  style={{marginTop: '5px', width: '10px', height: '8px', backgroundColor: '#7c0032', color: 'white', marginLeft: '10px',borderRadius:'5px',fontSize:'16px',border: 'none', padding: '9px 21px', cursor: 'pointer', display: 'flex', alignItems:'center', justifyContent: 'center', }}  >-</button>
+      </div>
     </div>
-
   );
-};
+}
 
-export default CounterBlock;
+
+
+export default PlayerBlock;

@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #b7b9a3;
+  background-color: #9c6874;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,9 +35,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-@font-face {
-  font-family: 'Everdell';
-  src: local('Everdell') url('./fonts/uncadis.ttf') format('truetype');
 }

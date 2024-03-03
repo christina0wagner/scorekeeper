@@ -1,29 +1,43 @@
+
 import './App.css';
-import React, { useState } from 'react';
-import CounterBlock from './CounterBlock';
+import React, {useState} from 'react';
+import PlayerBlock from './CounterBlock';
+
 
 function App() {
+     const [totalScore, setTotalScore] = useState(0);
 
-  const [totalScore, setTotalScore] = useState(0);
-
-  const handleCounterChange = (value) => {
-    setTotalScore(totalScore + value);
+  const handleScoreChange = (playerName, value) => {
+      setTotalScore(totalScore => totalScore + value);
   };
-
-return (
+    return(
     <div className="App">
-	<header className="App-header">
-		  <h1 style={{color:'#696c4a'}} >  EVERDELL </h1>
-		  <CounterBlock category='Points on Cards' onCounterChange={handleCounterChange}  />
-		  <CounterBlock category='Point Tokens' onCounterChange={handleCounterChange}  />
-		  <CounterBlock category='Prosperity Bonuses' onCounterChange={handleCounterChange} />
-		  <CounterBlock category='Journey Points' onCounterChange={handleCounterChange} />
-		  <CounterBlock category='Events' onCounterChange={handleCounterChange} />
-		  <h2 style={{color:'#5c503b', marginTop: '10px' }}>Total Score: {totalScore}</h2>
+      <header className="App-header">
+          <p>
+	      <div style={{border: '2px solid #360b19', backgroundColor:'#ffd8e0', borderRadius:'7px', padding: '5px 20px'}}>
+		  <h3 style={{color:'#673844'}}  >everdell</h3>
+		  </div>
+    </p>
 
-	  </header>      
+	  <div style={{border:'2px solid #ffd8e0', backgroundColor:'#360b19', padding: '30px', borderRadius: '10px', width:'500px'}}>
+	      <PlayerBlock playerName="base points for cards" onScoreChange={handleScoreChange} />
+	   <PlayerBlock playerName="point tokens" onScoreChange={handleScoreChange} />
+        <PlayerBlock playerName="prosperity card bonus points" onScoreChange={handleScoreChange} />
+        <PlayerBlock playerName="journey points" onScoreChange={handleScoreChange} />
+              <PlayerBlock playerName="events" onScoreChange={handleScoreChange}  />
+	      </div>
+	 
+	  <div style={{border: '2px solid #360b19', backgroundColor: '#ffd8e0', padding: '0px', marginTop:'30px' ,borderRadius: '7px', width:'500px'}}>
+	        <h4 style={{color: '#673844'}} >total score: {totalScore}</h4>
+	      </div>
+       
+      </header>
+
     </div>
   );
-}
+
+ 
+
+	};
 
 export default App;
